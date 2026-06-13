@@ -78,6 +78,16 @@
 (use-package magit
   :ensure t)
 
+;; LSPs
+(use-package lsp-mode
+  :ensure t
+  :hook ((c-mode . lsp)
+         (c++-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  )
+(use-package company
+  :ensure t)
+
 ; Function to select whole line
 (defun select-line ()
   (interactive)

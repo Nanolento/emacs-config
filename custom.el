@@ -16,8 +16,9 @@
    '("mpv" "vi" "vim" "screen" "tmux" "top" "htop" "less" "more" "lynx"
      "links" "ncftp" "mutt" "pine" "tin" "trn" "elm"))
  '(package-selected-packages
-   '(atom-one-dark-theme citeproc consult lsp-mode magit marginalia
-                         orderless php-mode vertico which-key))
+   '(atom-one-dark-theme citeproc company company-mode consult lsp-mode
+                         magit marginalia orderless php-mode vertico
+                         which-key))
  '(tab-stop-list '(4 8 12))
  '(tab-width 4))
 (custom-set-faces
