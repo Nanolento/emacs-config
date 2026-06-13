@@ -84,6 +84,10 @@
   :hook ((c-mode . lsp)
          (c++-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
+  :config
+  (setq lsp-keymap-prefix "C-c l")
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+  (setq lsp-file-watch-threshold 15000)
   )
 (use-package company
   :ensure t)
