@@ -83,14 +83,25 @@
   :ensure t
   :hook ((c-mode . lsp)
          (c++-mode . lsp)
+         (python-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :config
   (setq lsp-keymap-prefix "C-c l")
   (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
   (setq lsp-file-watch-threshold 15000)
   )
-(use-package company
-  :ensure t)
+(use-package lsp-ui
+  :ensure t
+  :commands (lsp-ui-mode)
+  :config
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-doc-delay 0.5)
+  (setq lsp-ui-sideline-show-hover nil)
+  (setq lsp-ui-sideline-show-diagnostics t)
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+  )
+(use-package company)
 
 ; Function to select whole line
 (defun select-line ()
