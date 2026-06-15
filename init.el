@@ -72,6 +72,7 @@
 ;; Add labels to functions in M-x
 (use-package marginalia
   :ensure t
+  :pin gnu
   :init
   (marginalia-mode))
 
