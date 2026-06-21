@@ -58,6 +58,7 @@
 ;; fancy auto-complete
 (use-package vertico
   :ensure t
+  :pin gnu
   :init
   (vertico-mode)
   :config

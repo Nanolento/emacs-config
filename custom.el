@@ -15,7 +15,9 @@
  '(eshell-visual-commands
    '("mpv" "vi" "vim" "screen" "tmux" "top" "htop" "less" "more" "lynx"
      "links" "ncftp" "mutt" "pine" "tin" "trn" "elm"))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(atom-one-dark-theme citeproc company consult lsp-ui magit marginalia
+                         orderless vertico yasnippet))
  '(tab-stop-list '(4 8 12))
  '(tab-width 4))
 (custom-set-faces
