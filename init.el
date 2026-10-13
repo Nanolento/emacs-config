@@ -8,8 +8,13 @@
 ;; disable annoying compiler warnings
 (setq byte-compile-warnings '(not free-vars unresolved noruntime lexical make-local))
 
-; Set font
-(add-to-list 'default-frame-alist `(font . "BerkeleyMono-20"))
+;; Set font
+;; Spline Sans Mono if the font is found, Consolas otherwise
+;; falls back to default font ofc if not found.
+(if (find-font (font-spec :family "Spline Sans Mono"))
+    (add-to-list 'default-frame-alist `(font . "SplineSansMono-18"))
+  (add-to-list 'default-frame-alist `(font . "Consolas-18")))
+  
 
 ; Line numbers
 (global-display-line-numbers-mode 1)
@@ -26,12 +31,18 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-; Redirect customized variables to custom.el
-(setq custom-file "~/.config/emacs/custom.el")
+;; Redirect customized variables to custom.el
+;; Uses config dir on linux and .emacs.d on windows
+(if (eq system-type 'gnu/linux)
+  (setq custom-file "~/.config/emacs/custom.el")
+  ;; else, like when using windows..
+  (setq custom-file "~/.emacs.d/custom.el")
+)
+
 (load-file custom-file)
 
-; Uncomment this to make the background transparent
-;(set-frame-parameter nil 'alpha-background 95)
+;; Uncomment this to make the background transparent
+;; (set-frame-parameter nil 'alpha-background 95)
 
 (require 'use-package)
 (setq use-package-always-ensure t)
@@ -106,14 +117,14 @@
 (use-package yasnippet)
 (use-package company)
 
-; Function to select whole line
+;; Function to select whole line
 (defun select-line ()
   (interactive)
   (move-beginning-of-line 1)
   (set-mark-command nil)
   (move-end-of-line 1))
 
-; Keybinds
+;; Keybinds
 (keymap-global-set "C-x e" 'replace-string)
 (keymap-global-set "C-x C-b" 'ibuffer)
 (keymap-global-set "C-x c" 'compile)
@@ -121,7 +132,7 @@
 (keymap-global-set "M-g l" 'consult-line)
 (keymap-global-set "C-x /" 'comment-or-uncomment-region)
 
-; Dont clutter those stupid backup files everywhere
+;; Dont clutter those stupid backup files everywhere
 (setq auto-save-file-name-transforms
       `((".*" ,(concat user-emacs-directory "auto-save/") t)))
 (setq backup-directory-alist
